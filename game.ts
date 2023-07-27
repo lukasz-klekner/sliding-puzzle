@@ -8,12 +8,27 @@ const gameState = [
 ];
 
 const render = (gameBoard: HTMLDivElement, gameState: HTMLDivElement[][]) => {
-  gameState.forEach((row) => {
-    row.forEach((col) => {
-      gameBoard.appendChild(col);
+  gameState.forEach((row, rowIndex) => {
+    row.forEach((tile, colIndex) => {
+      tile.style.top = `${rowIndex*100}px`
+      tile.style.left = `${colIndex*100}px`
+      gameBoard.appendChild(tile);
     });
   });
 };
+
+const moveElement = (element1, element2) => {
+  let temp1, temp2
+
+  temp1 = element1.style.top
+  temp2 = element1.style.left
+
+  element1.style.top = element2.style.top
+  element1.style.left = element2.style.left
+
+  element2.style.top = temp1
+  element2.style.left = temp2
+}
 
 gameBoard.addEventListener("click", (event: Event) => {
   const target = event.target;
@@ -43,7 +58,12 @@ gameBoard.addEventListener("click", (event: Event) => {
     const temp = gameState[x][y];
     gameState[x][y] = gameState[emptyX][emptyY];
     gameState[emptyX][emptyY] = temp;
+
+    moveElement(gameState[x][y], gameState[emptyX][emptyY])
+
   }
 
   render(gameBoard, gameState);
 });
+
+render(gameBoard, gameState)
