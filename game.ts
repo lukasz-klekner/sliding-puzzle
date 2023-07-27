@@ -12,13 +12,17 @@ const render = (gameBoard: HTMLDivElement, gameState: HTMLDivElement[][]) => {
     row.forEach((tile, colIndex) => {
       tile.style.top = `${rowIndex*100}px`
       tile.style.left = `${colIndex*100}px`
+
+      tile.style['background-position-y'] = `-${rowIndex*100}px`
+      tile.style['background-position-x'] = `-${colIndex*100}px`
+
       gameBoard.appendChild(tile);
     });
   });
 };
 
-const moveElement = (element1, element2) => {
-  let temp1, temp2
+const moveElement = (element1: HTMLDivElement, element2: HTMLDivElement) => {
+  let temp1: string, temp2: string
 
   temp1 = element1.style.top
   temp2 = element1.style.left
@@ -62,8 +66,8 @@ gameBoard.addEventListener("click", (event: Event) => {
     moveElement(gameState[x][y], gameState[emptyX][emptyY])
 
   }
-
-  render(gameBoard, gameState);
 });
 
+
+// initial render of game board
 render(gameBoard, gameState)

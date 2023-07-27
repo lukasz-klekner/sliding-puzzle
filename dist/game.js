@@ -10,6 +10,8 @@ const render = (gameBoard, gameState) => {
         row.forEach((tile, colIndex) => {
             tile.style.top = `${rowIndex * 100}px`;
             tile.style.left = `${colIndex * 100}px`;
+            tile.style['background-position-y'] = `-${rowIndex * 100}px`;
+            tile.style['background-position-x'] = `-${colIndex * 100}px`;
             gameBoard.appendChild(tile);
         });
     });
@@ -49,6 +51,6 @@ gameBoard.addEventListener("click", (event) => {
         gameState[emptyX][emptyY] = temp;
         moveElement(gameState[x][y], gameState[emptyX][emptyY]);
     }
-    render(gameBoard, gameState);
 });
+// initial render of game board
 render(gameBoard, gameState);

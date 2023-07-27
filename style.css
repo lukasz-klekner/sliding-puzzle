@@ -26,6 +26,14 @@ body {
   border: 1px solid white;
   height: 100px;
   width: 100px;
-  color: white;
+  color: transparent;
   font-size: 30px;
+  transition: top 0.5s linear, left 0.5s linear;
+  background: url(novak.jpeg);
+  cursor: pointer;
+}
+
+.tile:last-of-type{
+  background: none;
+  border: none;
 }
